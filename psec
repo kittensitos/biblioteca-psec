@@ -1,0 +1,176 @@
+Algoritmo SistemaBiblioteca
+	// Entrega 1 - Sistema de biblioteca
+	// Registro y consulta de libros y estudiantes
+	// Arreglos para guardar los libros
+	Dimensionar libCodigo(100)
+	Dimensionar libTitulo(100)
+	Dimensionar libAutor(100)
+	Dimensionar libAnio(100)
+	Dimensionar libCategoria(100)
+	Dimensionar libEjemplares(100)
+	// Arreglos para guardar los estudiantes
+	Dimensionar estCarne(100)
+	Dimensionar estNombres(100)
+	Dimensionar estApellidos(100)
+	Definir libCodigo, libTitulo, libAutor, libCategoria Como Cadena
+	Definir libAnio, libEjemplares Como Entero
+	Definir estCarne, estNombres, estApellidos Como Cadena
+	Definir totalLibros, totalEstudiantes, opcion, i Como Entero
+	Definir anioActual, anio, ejemplares, opCat Como Entero
+	Definir codigo, titulo, autor, categoria Como Cadena
+	Definir carne, nombres, apellidos Como Cadena
+	totalLibros <- 0
+	totalEstudiantes <- 0
+	anioActual <- 2026
+	Repetir // anio actual, PSeInt no tiene funcion de fecha
+		Escribir ''
+		Escribir '===== SISTEMA DE BIBLIOTECA ====='
+		Escribir '1. Registrar libros'
+		Escribir '2. Registrar estudiantes'
+		Escribir '3. Consultar libros'
+		Escribir '4. Consultar estudiantes'
+		Escribir '5. Salir'
+		Escribir 'Ingrese una opcion: 'Sin Saltar
+		Leer opcion
+		Segun opcion Hacer
+			1:
+				Escribir '--- Registro de libro ---' // ----- REGISTRAR LIBRO -----
+				// Validar que el codigo no este vacio
+				Repetir
+					Escribir 'Ingrese el codigo del libro: 'Sin Saltar
+					Leer codigo
+					Si codigo='' Entonces
+						Escribir 'Error: el codigo no puede estar vacio'
+					FinSi
+				Hasta Que codigo<>''
+				// Validar que el titulo no este vacio
+				Repetir
+					Escribir 'Ingrese el titulo: 'Sin Saltar
+					Leer titulo
+					Si titulo='' Entonces
+						Escribir 'Error: el titulo no puede estar vacio'
+					FinSi
+				Hasta Que titulo<>''
+				// Validar que el autor no este vacio
+				Repetir
+					Escribir 'Ingrese el autor: 'Sin Saltar
+					Leer autor
+					Si autor='' Entonces
+						Escribir 'Error: el autor no puede estar vacio'
+					FinSi
+				Hasta Que autor<>''
+				// Validar que el anio no sea mayor al actual
+				Repetir
+					Escribir 'Ingrese el anio de publicacion: 'Sin Saltar
+					Leer anio
+					Si anio>anioActual O anio<=0 Entonces
+						Escribir 'Error: el anio debe ser mayor a 0 y menor o igual a ', anioActual
+					FinSi
+				Hasta Que anio<=anioActual Y anio>0
+				// Validar que se elija una categoria valida
+				Repetir
+					Escribir 'Categorias disponibles:'
+					Escribir '1. Literatura'
+					Escribir '2. Ciencias'
+					Escribir '3. Informatica'
+					Escribir '4. Sociales'
+					Escribir '5. Otra'
+					Escribir 'Elija la categoria: 'Sin Saltar
+					Leer opCat
+					Si opCat<1 O opCat>5 Entonces
+						Escribir 'Error: debe elegir una categoria entre 1 y 5'
+					FinSi
+				Hasta Que opCat>=1 Y opCat<=5
+				Segun opCat Hacer
+					1:
+						categoria <- 'Literatura'
+					2:
+						categoria <- 'Ciencias'
+					3:
+						categoria <- 'Informatica'
+					4:
+						categoria <- 'Sociales'
+					5:
+						categoria <- 'Otra'
+				FinSegun
+				Repetir
+					// Validar que la cantidad de ejemplares sea mayor a 0
+					Escribir 'Ingrese la cantidad de ejemplares: 'Sin Saltar
+					Leer ejemplares
+					Si ejemplares<=0 Entonces
+						Escribir 'Error: la cantidad debe ser mayor a 0'
+					FinSi
+				Hasta Que ejemplares>0
+				// Se guarda el libro en los arreglos
+				totalLibros <- totalLibros+1
+				libCodigo[totalLibros] <- codigo
+				libTitulo[totalLibros] <- titulo
+				libAutor[totalLibros] <- autor
+				libAnio[totalLibros] <- anio
+				libCategoria[totalLibros] <- categoria
+				libEjemplares[totalLibros] <- ejemplares
+				Escribir 'Libro registrado correctamente!'
+			2:
+				Escribir '--- Registro de estudiante ---' // ----- REGISTRAR ESTUDIANTE -----
+				Repetir
+					Escribir 'Ingrese el carne: 'Sin Saltar
+					Leer carne
+					Si carne='' Entonces
+						Escribir 'Error: el carne no puede estar vacio'
+					FinSi
+				Hasta Que carne<>''
+				Repetir
+					Escribir 'Ingrese los nombres: 'Sin Saltar
+					Leer nombres
+					Si nombres='' Entonces
+						Escribir 'Error: los nombres no pueden estar vacios'
+					FinSi
+				Hasta Que nombres<>''
+				Repetir
+					Escribir 'Ingrese los apellidos: 'Sin Saltar
+					Leer apellidos
+					Si apellidos='' Entonces
+						Escribir 'Error: los apellidos no pueden estar vacios'
+					FinSi
+				Hasta Que apellidos<>''
+				totalEstudiantes <- totalEstudiantes+1
+				estCarne[totalEstudiantes] <- carne
+				estNombres[totalEstudiantes] <- nombres
+				estApellidos[totalEstudiantes] <- apellidos
+				Escribir 'Estudiante registrado correctamente!'
+			3:
+				Escribir '--- Listado de libros ---' // ----- CONSULTAR LIBROS -----
+				Si totalLibros=0 Entonces
+					Escribir 'Todavia no hay libros registrados'
+				SiNo
+					Para i<-1 Hasta totalLibros Con Paso 1 Hacer
+						Escribir 'Libro #', i
+						Escribir '  Codigo: ', libCodigo[i]
+						Escribir '  Titulo: ', libTitulo[i]
+						Escribir '  Autor: ', libAutor[i]
+						Escribir '  Anio de publicacion: ', libAnio[i]
+						Escribir '  Categoria: ', libCategoria[i]
+						Escribir '  Ejemplares: ', libEjemplares[i]
+						Escribir '--------------------------'
+					FinPara
+				FinSi
+			4:
+				Escribir '--- Listado de estudiantes ---' // ----- CONSULTAR ESTUDIANTES -----
+				Si totalEstudiantes=0 Entonces
+					Escribir 'Todavia no hay estudiantes registrados'
+				SiNo
+					Para i<-1 Hasta totalEstudiantes Con Paso 1 Hacer
+						Escribir 'Estudiante #', i
+						Escribir '  Carne: ', estCarne[i]
+						Escribir '  Nombres: ', estNombres[i]
+						Escribir '  Apellidos: ', estApellidos[i]
+						Escribir '--------------------------'
+					FinPara
+				FinSi
+			5:
+				Escribir 'Gracias por usar el sistema. Hasta luego!'
+			De Otro Modo:
+				Escribir 'Opcion invalida, ingrese un numero del 1 al 5'
+		FinSegun
+	Hasta Que opcion=5
+FinAlgoritmo
