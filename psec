@@ -2,16 +2,16 @@ Algoritmo SistemaBiblioteca
 	// Entrega 1 - Sistema de biblioteca
 	// Registro y consulta de libros y estudiantes
 	// Arreglos para guardar los libros
-	Dimensionar libCodigo(100)
-	Dimensionar libTitulo(100)
-	Dimensionar libAutor(100)
-	Dimensionar libAnio(100)
-	Dimensionar libCategoria(100)
-	Dimensionar libEjemplares(100)
+	Dimensionar libCodigo(50)
+	Dimensionar libTitulo(50)
+	Dimensionar libAutor(50)
+	Dimensionar libAnio(50)
+	Dimensionar libCategoria(50)
+	Dimensionar libEjemplares(50)
 	// Arreglos para guardar los estudiantes
-	Dimensionar estCarne(100)
-	Dimensionar estNombres(100)
-	Dimensionar estApellidos(100)
+	Dimensionar estCarne(50)
+	Dimensionar estNombres(50)
+	Dimensionar estApellidos(50)
 	Definir libCodigo, libTitulo, libAutor, libCategoria Como Cadena
 	Definir libAnio, libEjemplares Como Entero
 	Definir estCarne, estNombres, estApellidos Como Cadena
